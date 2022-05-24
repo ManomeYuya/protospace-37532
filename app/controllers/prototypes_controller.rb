@@ -16,6 +16,34 @@ class PrototypesController < ApplicationController
     end
   end
 
+  def show
+    @prototype = Prototype.find(params[:id]) #idで、Prototypeモデルの特定のオブジェクトを取得
+    @comment = Comment.new
+    @comments = @prototype.comments
+  end
+
+  def edit
+    @prototype = Prototype.find(params[:id])
+  end
+
+  def update
+    @prototype = Prototype.find(params[:id])
+    @prototype.update(prototype_params)
+    if @prototype.save
+      redirect_to prototype_path
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @prototype = Prototype.find(params[:id])
+    @prototype.destroy
+    redirect_to root_path
+  end
+
+
+
   private
 
   def prototype_params
