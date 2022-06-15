@@ -4,8 +4,9 @@
     <% if user_signed_in? %>
        <div class="greeting">
           こんにちは、 <%#ただの文字なので<%でくくらない。メゾットになってしまう %>
-        <%= link_to "#{current_user.name}さん", root_path, class: :greeting__link%>
-      </div> 
+        <%= link_to "#{current_user.name}さん", user_path(current_user), class: :greeting__link%> 
+          <%# // こんにちは、◯○さんは、ログインしているユーザー %>
+      </div>
       <%end%>
     <%# // ログインしているときは上記を表示する %>
      <div class="card__wrapper">
