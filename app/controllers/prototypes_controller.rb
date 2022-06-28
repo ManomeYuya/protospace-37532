@@ -1,6 +1,6 @@
 class PrototypesController < ApplicationController
   before_action :set_prototype, except: [:index, :new, :create]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show] #ログインしていなければログイン画面に遷移させる
   before_action :contributor_confirmation, only: [:edit, :update, :destroy]
 
   def index
@@ -55,6 +55,6 @@ class PrototypesController < ApplicationController
   end
 
   def contributor_confirmation
-    redirect_to root_path unless current_user == @prototype.user
+    redirect_to root_path unless current_user == @prototype.user #ログインしているユーザーと投稿者が一致していなければ
   end
 end
